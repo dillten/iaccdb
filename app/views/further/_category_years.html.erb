@@ -14,9 +14,14 @@
     <% end %>
   </tr>
 <% end %>
-<tr><th>Any Category</th>
+<tr><th>Unique (any category)</th>
   <% years.each do |year| %>
     <td><%= cat_year_select(cat_years, 'any', year, 'count') %></td>
+  <% end %>
+</tr>
+<tr><th>Total</th>
+  <% years.each do |year| %>
+    <td><%= cats.sum { |cat| cat_year_select(cat_years, cat.id, year, 'count').to_i } %></td>
   <% end %>
 </tr>
 </tbody>
