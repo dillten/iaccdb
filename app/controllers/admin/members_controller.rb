@@ -37,7 +37,8 @@ class Admin::MembersController < ApplicationController
         redirect_to admin_members_url
       else
         @role_flights = merge.role_flights
-        @target = merge.default_target
+        clicked_id = params[:merge_clicked_id].to_i
+        @target = merge.members.find { |m| m.id == clicked_id } || merge.default_target
         @members = merge.members
 
         if (merge.has_collisions)

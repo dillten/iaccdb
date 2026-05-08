@@ -32,7 +32,7 @@
       <td><%= member.iac_id %></td>
       <td><%= link_to :edit, edit_admin_member_path(member) %></td>
       <td><%= link_to :show, admin_member_path(member) %></td>
-      <td><%= submit_tag :merge %></td>
+      <td><%= submit_tag :merge, name: "merge_clicked_id", value: member.id %></td>
     </tr>
   <% end %>
   </tbody>
