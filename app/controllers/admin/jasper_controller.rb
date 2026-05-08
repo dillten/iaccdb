@@ -47,7 +47,7 @@ def results
     post_record.has_error = true
     post_record.error_description = @exception
   ensure
-    post_record.save!
+    post_record.save
   end
   self.formats = [:xml]
   if (status == 200)
