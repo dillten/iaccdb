@@ -1,7 +1,8 @@
 <h3><%= category[:cat].name %></h3>
 
 <table class='pilot_results'><thead><tr>
-  <th <% unless defined?(live_results) %>colspan='3' <% end %> >Pilot</th>
+  <th <% unless defined?(live_results) %>colspan='2' <% end %> >Pilot</th>
+  <% unless defined?(live_results) %> <th>Ch#</th> <% end %>
   <% unless defined?(live_results) %> <th>Airplane</th> <% end %>
   <% flight_order = [] %>
   <% category[:flights].each do |flight| %>

@@ -1,4 +1,4 @@
-<tr><td><%= "\u2713" if regional_series_pilot.qualified %></td>
+<tr><td><%= '<span title="Qualified for Regional Series">&#x2713;</span>'.html_safe if regional_series_pilot.qualified %></td>
 <td><%= regional_series_pilot.rank if regional_series_pilot.qualified %></td>
 <td class='regional_series_pilot_name'>
 <%= link_to regional_series_pilot.pilot.name, pilot_path(regional_series_pilot.pilot) %>
