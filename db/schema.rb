@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2025_08_12_234423) do
   end
 
   create_table "contests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name", limit: 48
+    t.string "name", limit: 255
     t.string "city", limit: 24
     t.string "state", limit: 2
     t.date "start"

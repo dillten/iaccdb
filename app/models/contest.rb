@@ -7,8 +7,17 @@ class Contest < ApplicationRecord
   has_many :data_posts, :dependent => :nullify
   has_many :failures, :dependent => :destroy
 
-  validates :name, :length => { :in => 4..48 }
+  validates :name, :length => { :in => 4..255 }
   validates :city, :length => { :maximum => 24 }
+
+  # Returns an array of years (integers) for which contest records exist,
+  # sorted in descending order.
+  def self.available_years
+    Contest.select("distinct year(start) as yr").all
+      .collect { |c| c.yr }
+      .compact
+      .sort { |a, b| b <=> a }
+  end
   validates :state, :length => { :maximum => 2 }
   validates :director, :length => { :maximum => 48 }
   validates :region, :length => { :maximum => 16 }

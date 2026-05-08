@@ -1,5 +1,5 @@
 <li><%= contest.start %>
-  <%= link_to contest.sobriquet, contest %>
+  <%= link_to contest do %><span title="<%= contest.sobriquet %>"><%= truncate(contest.sobriquet, length: 48, omission: '...') %></span><% end %>
   <%= contest.place %>.
   <%= "Directed by #{contest.director}" unless contest.director.blank? %><%=
     ", Chapter #{contest.chapter}" unless contest.chapter.blank?
