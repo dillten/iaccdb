@@ -12,9 +12,9 @@ Rails.application.config.action_controller.per_form_csrf_tokens = false
 # Enable origin-checking CSRF mitigation. Previous versions had false.
 Rails.application.config.action_controller.forgery_protection_origin_check = false
 
-# Make Ruby 2.4 preserve the timezone of the receiver when calling `to_time`.
-# Previous versions had false.
-ActiveSupport.to_time_preserves_timezone = false
+# Preserve the timezone of the receiver when calling `to_time`.
+# Use :zone to preserve the Rails time zone (replaces the deprecated boolean form).
+ActiveSupport.to_time_preserves_timezone = :zone
 
 # Require `belongs_to` associations by default. Previous versions had false.
 Rails.application.config.active_record.belongs_to_required_by_default = false

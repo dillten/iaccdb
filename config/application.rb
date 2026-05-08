@@ -14,5 +14,9 @@ module IAC
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # This app does not use Active Storage image variants, so disable the
+    # variant processor to suppress the image_processing gem warning.
+    config.active_storage.variant_processor = :disabled
   end
 end

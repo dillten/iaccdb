@@ -14,7 +14,9 @@ public/assets
 .DS_Store
 *.dia~
 coverage/
-.idea
+# JetBrains / RubyMine
+.idea/
+*.iml
 .generators
 .rakeTasks
 
