@@ -21,14 +21,12 @@ up to <%= @max_displayed %> judges in each category who have
   class='tabs judge-leaders-category-list'
   data-tabs
 >
-  <% @results.each_with_index do |cat_jy, index| %>
-    <li class=
-      "tabs-title <%= 'is-active' if index == 0 %> judge-leaders-category"
-    >
-      <a
-        href="#<%= judge_leaders_cat_id(cat_jy[0]) %>"
-        <%= 'aria-selected="true"' if index == 0 %>
-      >
+  <li class="tabs-title is-active judge-leaders-category">
+    <a href="#judge-leaders-total" aria-selected="true">Total</a>
+  </li>
+  <% @results.each do |cat_jy| %>
+    <li class="tabs-title judge-leaders-category">
+      <a href="#<%= judge_leaders_cat_id(cat_jy[0]) %>">
         <%= cat_jy[0].name %>
       </a>
     </li>
@@ -38,12 +36,21 @@ up to <%= @max_displayed %> judges in each category who have
   class='tabs-content judge-leaders-category-collection'
   data-tabs-content="judge-leaders-tabs"
 >
-  <% @results.each_with_index do |cat_jy, index| %>
+  <div id="judge-leaders-total" class="tabs-panel is-active">
+    <h4>Total (all categories)</h4>
+    <table class='judge_leaders'>
+      <tbody>
+        <%= render :partial => 'judges/stats_header', :object => 'Judge' %>
+        <%= render :partial => 'jy_result', :collection => @total_jy_results %>
+      </tbody>
+    </table>
+  </div>
+  <% @results.each do |cat_jy| %>
     <%= render :partial => 'jy_category',
       :locals => {
       category: cat_jy[0],
       jy_results: cat_jy[1],
-      is_first: index == 0
+      is_first: false
     } %>
   <% end %>
 </div>

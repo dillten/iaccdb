@@ -17,6 +17,14 @@ class LeadersController < ApplicationController
       crop_results[cat] = jy_results.first(@max_displayed)
     end
     @results = crop_results.sort_by { |cat, jy_results| cat.sequence }
+
+    # Compute totals across all categories per judge for the Total tab
+    @total_jy_results = JyResult.includes(:judge).select(
+      [:pilot_count, :sigma_ri_delta, :con, :dis, :minority_zero_ct,
+       :minority_grade_ct, :pair_count, :ftsdx2, :ftsdy2, :ftsdxdy, :sigma_d2,
+       :total_k, :figure_count, :flight_count, :ri_total].collect { |col|
+      "sum(#{col}) as #{col}" }.join(',') + ", judge_id"
+    ).where(["year = ?", @year]).group(:judge_id).order('flight_count desc').first(@max_displayed)
   end
 
   def pilots
