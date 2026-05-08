@@ -20,5 +20,8 @@ coverage/
 .generators
 .rakeTasks
 
+# Claude Code
+.claude/
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
