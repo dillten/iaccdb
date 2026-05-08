@@ -9,39 +9,9 @@ module IAC
     end
 
     def mark_solo_participants_as_hc
-
-      # As of 2022, there is no requirement for multiple competitors in a category
-      return if @contest.start.year >= 2022
-
-      flights = @contest.flights
-      categories = flights.collect { |f| f.categories }
-      categories = categories.flatten.uniq
-      flights_by_cat = {}
-      flights.each do |f|
-        f.categories.each do |cat|
-          flights_by_cat[cat] ||= []
-          flights_by_cat[cat] << f
-        end
-      end
-      categories.each do |cat|
-        # working a category
-        # cat_flights is an array of flights in this category
-        cat_flights = flights_by_cat[cat]
-        # participant_counts is an array of counts:
-        #  - the number of pilot_flights in each flight of this category
-        #  is equivalent to the number of pilots participating in each flight
-        participant_counts = cat_flights.collect { |f| f.pilot_flights.count }
-        max_ct = participant_counts.inject(0) do |max_ct, ct|
-          max_ct < ct ? ct : max_ct
-        end
-        if 1 == max_ct
-          cat_flights.each do |f|
-            f.pilot_flights.each do |pf|  ### there ought to be only one
-              pf.hc_no_competition.save!
-            end
-          end
-        end
-      end
+      # As of 2022 rule change, a sole competitor in a category is no longer
+      # automatically Hors Concours. Single entrants compete normally and are
+      # eligible for trophies. This method is intentionally a no-op.
     end
 
     def mark_lower_category_participants_as_hc
