@@ -33,7 +33,7 @@ class FurtherController < ApplicationController
   end
 
   def airplane_make_model
-    @years = Contest.pluck(:start).map{ |start| start.year }.uniq.sort.reverse
+    @years = Contest.available_years
     @year = params[:year] || @years.first
     airplanes_with_cat = Airplane.joins([
       {:pilot_flights => {:flight => [:categories, :contest]}},
