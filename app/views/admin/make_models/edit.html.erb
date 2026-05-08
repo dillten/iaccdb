@@ -19,12 +19,18 @@
   <div class="field">
     <%= f.label(:wings) %>
     <div class="selection">
-      Monoplane
-      <%= f.radio_button(:wings, 1) %>
-      <%= f.radio_button(:wings, 2) %>
-      Biplane
-      (<%= f.radio_button(:wings, 0) %>
-       Undetermined)
+      <%= f.label(:wings_1, class: 'radio-label') do %>
+        <%= f.radio_button(:wings, 1) %>
+        Monoplane
+      <% end %>
+      <%= f.label(:wings_2, class: 'radio-label') do %>
+        <%= f.radio_button(:wings, 2) %>
+        Biplane
+      <% end %>
+      <%= f.label(:wings_0, class: 'radio-label') do %>
+        <%= f.radio_button(:wings, 0) %>
+        Undetermined
+      <% end %>
     </div>
   </div>
   <div class="field">
@@ -36,8 +42,10 @@
     <%= f.number_field(:max_weight_lbs, min: 0) %>
   </div>
   <div class="field">
-    <%= f.check_box(:curated) %>
-    <%= f.label(:curated) %>
+    <%= f.label(:curated) do %>
+      <%= f.check_box(:curated) %>
+      Curated
+    <% end %>
   </div>
   <%= f.submit 'Update' %>
   <%= link_to 'Cancel', admin_make_models_path %>
